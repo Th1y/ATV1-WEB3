@@ -1,0 +1,22 @@
+
+
+ {
+   "tema": "Acadêmico",
+   "enunciado": "Calcule a média de um estudante. Se for maior que 6 é aprovado, senão reprovado",
+   "conta": "Calcule a média de um estudante.",
+   "condicao": "Se for maior que 6 é aprovado, senão reprova	do",
+   "formula": "(nota1 + nota2) / 2",
+   "casos_de_teste": [
+     {
+       "nome": "Estudante A",
+       "nota1": 7,
+       "nota2": 8
+     },
+     {
+       "nome": "Estudante B",
+       "nota1": 5,
+       "nota2": 6
+     }
+   ]
+ },
+ {
