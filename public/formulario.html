@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario de entrada de Notas</title>
+</head>
+<body>
+    <h1>formulario de entrada de notas</h1>
+
+    <p>informe seu nome, nota 1 e nota 2</p>
+
+    <!-- Formulario que recebe nome, nota 1 e nota 2 -->
+    <form action="resposta_problema" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        <br>
+
+        <label for="nota1">Nota 1:</label>
+        <input type="number" name="nota1" id="nota1" step="0.1" min="0" max="10" required>
+        <br>
+
+        <label for="nota2">Nota 1:</label>
+        <input type="number" name="nota2" id="nota2" step="0.1" min="0" max="10" required>
+        <br>
+        
+        <button type="submit">Enviar</button>
+
+    </form>
+</body>
+</html>
