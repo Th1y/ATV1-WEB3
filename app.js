@@ -3,6 +3,18 @@ const app = express();
 const path = require('path');
 const port = 3000; 
 
+// Midleware para registrar hora e rota de cada solicitação
+app.use((req, res, next) => {
+    const agora = new Date();
+    const Hora_Formatada = agora.toLocaleString('pt-BR'); 
+    
+    // data e hora do brasil no momento da requisição
+    console.log(`[${Hora_Formatada}] ${req.method} ${req.url}`);
+
+    // segue para a proxima função (rota ou middleware)
+    next();
+});
+
 // Middleware para interpretar dados do formulario
 app.use(express.urlencoded({ extended: true}));
 
@@ -44,6 +56,14 @@ app.post('/resposta_problema', (req, res) => {
     console.log(nome, notas, media, situacao_aluno);
     
     res.send(`
+
+    <nav> <!-- lista da barra de navegação para os links seu_problema e sobre-->
+        <ul>
+            <li><a href="/seu_problema">Media</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            </ul>
+        </nav>
+        
         <h1>Resultado</h1>
         <p>Nome: ${nome}</p>
         <p>notas:${notas}</p>
@@ -51,6 +71,17 @@ app.post('/resposta_problema', (req, res) => {
         <p>Situação: ${situacao_aluno}</p>
 
     `);
+});
+
+// Middleware para erros de rota nao definida (404)
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+});
+
+// Middleware para erros gerais (500, etc)
+app.use((err, req, res, next) => {
+    console.error(`[ERRO] ${err.stack}`);
+    res.status(500).sendFile(path.join(__dirname, 'public', '500.html'));
 });
 
 app.listen(port, (err) => { // verifica se o site rodou corretamente ou algum erro aconteceu
