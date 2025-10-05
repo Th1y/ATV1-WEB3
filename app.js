@@ -1,7 +1,11 @@
 const express = require('express'); 
 const app = express();
 const path = require('path');
-const port = 3000; 
+const port = 3001; 
+
+// Serve arquivos estaticos a partir da pasta "public"
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Midleware para registrar hora e rota de cada solicitação
 app.use((req, res, next) => {
@@ -57,8 +61,9 @@ app.post('/resposta_problema', (req, res) => {
     
     res.send(`
 
-    <nav> <!-- lista da barra de navegação para os links seu_problema e sobre-->
+    <nav> <!-- lista da barra de navegação para os links home, seu_problema e sobre-->
         <ul>
+            <li><a href="/">Home</a></li>
             <li><a href="/seu_problema">Media</a></li>
             <li><a href="/sobre">Sobre</a></li>
             </ul>
